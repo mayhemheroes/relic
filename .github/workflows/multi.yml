@@ -3,7 +3,7 @@ name: Multithreading configuration
 on:
   push:
     branches:
-      - macosx         # all branches
+      - '**'         # all branches
   pull_request:
     branches:
       - '**'         # all branches
@@ -70,7 +70,7 @@ jobs:
         run: |
           curl -O https://mac.r-project.org/openmp/openmp-13.0.0-darwin21-Release.tar.gz
           sudo tar fvxz openmp-*.tar.gz -C /
-          xcode-select --install
+          clang  -E - -v < /dev/null
 
       - name: Run CMake (Win)
         if: ${{ (runner.os == 'Windows') && (matrix.config.cc == 'cl') }}
